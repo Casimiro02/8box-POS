@@ -35,37 +35,38 @@ export default function Dashboard() {
 
   return (
     <div className="relative flex flex-col gap-4 p-4 md:p-6 w-full h-full bg-gray-50">
-      {/* Background Abstract Shapes */}
+      {/* Background Overlay */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
-        {/* Bottom Left Red Shape */}
-        <div
-          className="absolute bottom-0 left-0 w-[30%] h-[40%] bg-red-700 opacity-20 rotate-[-15deg] rounded-tl-3xl"
-          style={{
-            clipPath: "polygon(0 0, 100% 0, 100% 70%, 0 100%)",
-          }}
-        />
-        {/* Top Right Pink Gradient */}
         <div
           className="absolute top-0 right-0 w-[40%] h-[50%] bg-gradient-to-br from-pink-100 to-pink-200 opacity-30 rounded-bl-3xl"
           style={{
             clipPath: "polygon(0 30%, 100% 0, 100% 100%, 0 100%)",
           }}
         />
+        <div
+          className="absolute bottom-0 left-0 w-[30%] h-[40%] bg-red-700 opacity-10 rotate-[-15deg] rounded-tl-3xl"
+          style={{
+            clipPath: "polygon(0 0, 100% 0, 100% 70%, 0 100%)",
+          }}
+        />
       </div>
 
-      {/* Header - Responsive */}
-      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-4">
-        <div>
-          <h1 className="text-2xl md:text-3xl font-bold">Dashboard</h1>
-          <p className="text-muted-foreground mt-1 text-sm md:text-base">{formattedDate}</p>
+      {/* Header */}
+      <div className="mb-6">
+        <h1 className="text-2xl md:text-3xl font-bold">Dashboard</h1>
+        <p className="text-muted-foreground mt-1 text-sm md:text-base">{formattedDate}</p>
+      </div>
+
+      {/* Unified Action Card: Unsynced + Filter + Sync */}
+      <Card className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 p-4 mb-6">
+        {/* Left: Unsynced Transactions */}
+        <div className="flex items-center gap-2 bg-yellow-50 text-yellow-600 px-3 py-2 rounded-md">
+          <AlertTriangleIcon className="h-5 w-5" />
+          <span className="font-medium text-sm">Unsynced Transactions: 3</span>
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-2">
-          <div className="flex items-center gap-2 bg-yellow-50 text-yellow-800 px-3 py-2 rounded-md">
-            <AlertTriangleIcon className="h-5 w-5" />
-            <span className="text-sm">Unsynced Transactions: 3</span>
-          </div>
-
+        {/* Right: Filter + Sync Button */}
+        <div className="flex items-center gap-2">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="outline" className="flex items-center gap-2">
@@ -82,115 +83,103 @@ export default function Dashboard() {
             </DropdownMenuContent>
           </DropdownMenu>
 
-          <Button variant="destructive" className="w-full sm:w-auto">
+          <Button variant="destructive" className="px-4 py-2">
             Sync now
           </Button>
         </div>
-      </div>
+      </Card>
 
-      {/* Stats Cards - Responsive */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+      {/* Stats Cards Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-6">
         {/* Today's Sale */}
         <Card className="hover:shadow-md transition-shadow">
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+          <CardContent className="p-4 flex items-center justify-between">
             <div>
-              <CardTitle className="text-sm font-medium">Today's Sale</CardTitle>
-              <p className="text-xs text-muted-foreground">-10% vs Last Month</p>
+              <div className="text-xl md:text-2xl font-bold">₱12,450</div>
+              <div className="text-xs text-muted-foreground">Today's Sale</div>
+              <div className="text-xs text-red-600">-10% vs Last Month</div>
             </div>
             <div className="bg-orange-100 p-2 rounded-full">
               <TrendingUpIcon className="h-6 w-6 text-orange-600" />
             </div>
-          </CardHeader>
-          <CardContent>
-            <div className="text-xl md:text-2xl font-bold">₱12,450</div>
           </CardContent>
         </Card>
 
         {/* Transactions */}
         <Card className="hover:shadow-md transition-shadow">
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+          <CardContent className="p-4 flex items-center justify-between">
             <div>
-              <CardTitle className="text-sm font-medium">Transactions</CardTitle>
-              <p className="text-xs text-muted-foreground">+20% vs Last Month</p>
+              <div className="text-xl md:text-2xl font-bold">15</div>
+              <div className="text-xs text-muted-foreground">Transactions</div>
+              <div className="text-xs text-green-600">+20% vs Last Month</div>
             </div>
             <div className="bg-green-100 p-2 rounded-full">
               <ShoppingBagIcon className="h-6 w-6 text-green-600" />
             </div>
-          </CardHeader>
-          <CardContent>
-            <div className="text-xl md:text-2xl font-bold">15</div>
           </CardContent>
         </Card>
 
         {/* Avg Margin */}
         <Card className="hover:shadow-md transition-shadow">
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+          <CardContent className="p-4 flex items-center justify-between">
             <div>
-              <CardTitle className="text-sm font-medium">Avg Margin:</CardTitle>
-              <p className="text-xs text-muted-foreground">+41% vs Last Month</p>
+              <div className="text-xl md:text-2xl font-bold">₱50,000</div>
+              <div className="text-xs text-muted-foreground">Avg Margin:</div>
+              <div className="text-xs text-green-600">+41% vs Last Month</div>
             </div>
             <div className="bg-yellow-100 p-2 rounded-full">
               <ChartBarIcon className="h-6 w-6 text-yellow-600" />
             </div>
-          </CardHeader>
-          <CardContent>
-            <div className="text-xl md:text-2xl font-bold">₱50,000</div>
           </CardContent>
         </Card>
       </div>
 
-      {/* Second Row Stats - Responsive */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+      {/* Second Row Stats */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-6">
         {/* Gross Margin */}
         <Card className="hover:shadow-md transition-shadow">
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+          <CardContent className="p-4 flex items-center justify-between">
             <div>
-              <CardTitle className="text-sm font-medium">Gross Margin</CardTitle>
-              <p className="text-xs text-muted-foreground">-10% vs Last Month</p>
+              <div className="text-xl md:text-2xl font-bold">32%</div>
+              <div className="text-xs text-muted-foreground">Gross Margin</div>
+              <div className="text-xs text-red-600">-10% vs Last Month</div>
             </div>
             <div className="bg-purple-100 p-2 rounded-full">
               <WalletIcon className="h-6 w-6 text-purple-600" />
             </div>
-          </CardHeader>
-          <CardContent>
-            <div className="text-xl md:text-2xl font-bold">32%</div>
           </CardContent>
         </Card>
 
         {/* Cash */}
         <Card className="hover:shadow-md transition-shadow">
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+          <CardContent className="p-4 flex items-center justify-between">
             <div>
-              <CardTitle className="text-sm font-medium">Cash</CardTitle>
-              <p className="text-xs text-muted-foreground">-10% vs Last Month</p>
+              <div className="text-xl md:text-2xl font-bold">₱75,000</div>
+              <div className="text-xs text-muted-foreground">Cash</div>
+              <div className="text-xs text-red-600">-10% vs Last Month</div>
             </div>
             <div className="bg-green-100 p-2 rounded-full">
               <WalletIcon className="h-6 w-6 text-green-600" />
             </div>
-          </CardHeader>
-          <CardContent>
-            <div className="text-xl md:text-2xl font-bold">₱75,000</div>
           </CardContent>
         </Card>
 
         {/* GC */}
         <Card className="hover:shadow-md transition-shadow">
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+          <CardContent className="p-4 flex items-center justify-between">
             <div>
-              <CardTitle className="text-sm font-medium">GC</CardTitle>
-              <p className="text-xs text-muted-foreground">-10% vs Last Month</p>
+              <div className="text-xl md:text-2xl font-bold">₱2,000</div>
+              <div className="text-xs text-muted-foreground">GC</div>
+              <div className="text-xs text-red-600">-10% vs Last Month</div>
             </div>
             <div className="bg-red-100 p-2 rounded-full">
               <ShoppingBagIcon className="h-6 w-6 text-red-600" />
             </div>
-          </CardHeader>
-          <CardContent>
-            <div className="text-xl md:text-2xl font-bold">₱2,000</div>
           </CardContent>
         </Card>
       </div>
 
-      {/* Popular and Low Stock Dishes - Responsive */}
+      {/* Popular & Low Stock Dishes */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
         {/* Popular Dishes */}
         <Card className="hover:shadow-md transition-shadow">
