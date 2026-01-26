@@ -1,6 +1,5 @@
-// src/layouts/WebLayout.tsx
 import { Outlet } from "react-router-dom";
-import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar"; // Add SidebarInset import
+import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar"; 
 import SidebarNav from "@/components/SidebarNav";
 
 const WebLayout = () => {
