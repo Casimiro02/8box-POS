@@ -1,3 +1,4 @@
+// src/App.tsx
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import WebLayout from "./layouts/WebLayout";
@@ -13,15 +14,19 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
+        {/* Make login the root route */}
+        <Route path="/" element={<Login />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/" element={<WebLayout />}>
+        
+        {/*Protected routes*/}
+        <Route path="/app" element={<WebLayout />}>
           <Route index element={<Dashboard />} />
-          <Route path="/order" element={<Order />} />
-          <Route path="/history" element={<History />} />
-          <Route path="/clock-in" element={<ClockIn />} />
-          <Route path="/report" element={<Report />} />
-          <Route path="/end-of-day" element={<EndOfDay />} />
-          <Route path="/setting" element={<Setting />} />
+          <Route path="/app/order" element={<Order />} />
+          <Route path="/app/history" element={<History />} />
+          <Route path="/app/clock-in" element={<ClockIn />} />
+          <Route path="/app/report" element={<Report />} />
+          <Route path="/app/end-of-day" element={<EndOfDay />} />
+          <Route path="/app/setting" element={<Setting />} />
         </Route>
       </Routes>
     </BrowserRouter>
