@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Login from "./pages/Login";
 import WebLayout from "./layouts/WebLayout";
 import Dashboard from "./pages/dashboard/Dashboard";
@@ -9,24 +9,34 @@ import Report from "./pages/report/Report";
 import EndOfDay from "./pages/endofday/EndOfDay";
 import Setting from "./pages/setting/Setting";
 
+const isAuthenticated = () => {
+  
+  return typeof window !== 'undefined' && localStorage.getItem('isLoggedIn') === 'true';
+};
+
 const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        {/* Make login the root route */}
-        <Route path="/" element={<Login />} />
+        {/* Public route for login */}
         <Route path="/login" element={<Login />} />
-        
-        {/*Protected routes*/}
-        <Route path="/app" element={<WebLayout />}>
-          <Route index element={<Dashboard />} />
-          <Route path="/app/order" element={<Order />} />
-          <Route path="/app/history" element={<History />} />
-          <Route path="/app/clock-in" element={<ClockIn />} />
-          <Route path="/app/report" element={<Report />} />
-          <Route path="/app/end-of-day" element={<EndOfDay />} />
-          <Route path="/app/setting" element={<Setting />} />
+
+        {/* Protected routes within the WebLayout */}
+        <Route
+          path="/"
+          element={isAuthenticated() ? <WebLayout /> : <Navigate to="/login" replace />}
+        >
+          <Route index element={<Dashboard />} /> {/* This matches "/" */}
+          <Route path="order" element={<Order />} />
+          <Route path="history" element={<History />} />
+          <Route path="clock-in" element={<ClockIn />} />
+          <Route path="report" element={<Report />} />
+          <Route path="end-of-day" element={<EndOfDay />} />
+          <Route path="setting" element={<Setting />} />
         </Route>
+
+        {/* Optional: Catch-all for non-existent routes, redirect to login */}
+        <Route path="*" element={<Navigate to="/login" replace />} />
       </Routes>
     </BrowserRouter>
   );

@@ -19,7 +19,7 @@ export const navItems: NavItem[] = [
   },
   {
     label: "Orders",
-    href: "/orders",
+    href: "/order",
     icon: FaShoppingCart,
   },
   {
@@ -39,7 +39,7 @@ export const navItems: NavItem[] = [
   },
   {
     label: "Settings",
-    href: "/settings",
+    href: "/setting",
     icon: IoMdSettings,
   },
 ];

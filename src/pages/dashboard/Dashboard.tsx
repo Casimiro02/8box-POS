@@ -224,5 +224,6 @@ function DishList({ title }: { title: string }) {
         ))}
       </CardContent>
     </Card>
+    
   );
 }
