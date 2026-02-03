@@ -4,7 +4,14 @@ import Navigation from "./Navigation";
 
 const SidebarNav = () => {
   return (
-    <Sidebar className="bg-[#0E4A64] text-white border-none">
+    <Sidebar
+      variant="floating"
+      className="
+        text-white
+        border-none
+        rounded-3xl
+      "
+    >
       <SidebarContent>
         <Profile />
         <Navigation />

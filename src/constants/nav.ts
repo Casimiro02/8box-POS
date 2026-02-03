@@ -14,12 +14,12 @@ interface NavItem {
 export const navItems: NavItem[] = [
   {
     label: "Home",
-    href: "/",
+    href: "/dashboard",
     icon: FaHouseChimney,
   },
   {
     label: "Orders",
-    href: "/order",
+    href: "/orders",
     icon: FaShoppingCart,
   },
   {
