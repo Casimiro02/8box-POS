@@ -3,7 +3,10 @@ import { FaShoppingCart } from "react-icons/fa";
 import { FaHistory } from "react-icons/fa";
 import { FaChartPie } from "react-icons/fa";
 import { IoMdSettings } from "react-icons/io";
+import { FaClock } from "react-icons/fa";
+import { FaClipboardList } from "react-icons/fa";
 import type { IconType } from "react-icons";
+
 
 interface NavItem {
   label: string;
@@ -30,12 +33,17 @@ export const navItems: NavItem[] = [
   {
     label: "Clock-in",
     href: "/clock-in",
-    icon: FaHistory,
+    icon: FaClock,
   },
   {
     label: "Report",
     href: "/report",
     icon: FaChartPie,
+  },
+  {
+    label: "End of Day",
+    href: "/end-of-day",
+    icon: FaClipboardList,
   },
   {
     label: "Settings",

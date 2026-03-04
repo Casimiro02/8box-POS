@@ -192,7 +192,7 @@ const ClockIn = () => {
                       size="sm"
                       className="mt-2 bg-gray-200 hover:bg-gray-300 text-gray-800"
                     >
-                      {isCameraActive ? 'Stopping...' : 'Open Camera'}
+                      {isCameraActive ? 'Stop' : 'Open Camera'}
                     </Button>
                   </>
                 )}

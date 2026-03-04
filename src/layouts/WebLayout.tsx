@@ -6,10 +6,9 @@ const WebLayout = () => {
   return (
     <SidebarProvider>
       <SidebarNav />
-      {/* Added 'relative' and 'bg-gray-100' to match the Login base style */}
       <SidebarInset className="relative bg-gray-100 overflow-hidden">
         
-        {/* --- START: Background Design --- */}
+        {/* Background Design */}
         <div className="absolute inset-0 w-full h-full pointer-events-none z-0">
           {/* Gradient Shape at Bottom */}
           <div
@@ -31,7 +30,7 @@ const WebLayout = () => {
             style={{ top: '350px' }}
           ></div>
         </div>
-        {/* --- END: Background Design --- */}
+        {/* END: Background Design */}
 
         {/* Main Content Area */}
         {/* Added 'relative' and 'z-10' so content sits ON TOP of the background */}
