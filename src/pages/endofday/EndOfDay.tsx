@@ -30,7 +30,7 @@ export default function EndOfDay() {
         <CardContent className="p-3 md:p-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-3"> 
           <div className="flex-1 min-w-0">
             <label htmlFor="cashierName" className="block text-xs font-medium text-muted-foreground mb-1">
-              Cashier Name
+               Name
             </label>
             <Input
               id="cashierName"
