@@ -3,15 +3,14 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Checkbox } from '@/components/ui/checkbox';
 import { Link, useNavigate } from 'react-router-dom';
 
-const Login = () => {
+const Register = () => {
   const [formData, setFormData] = useState({
     employeeId: '',
     username: '',
     password: '',
-    rememberMe: false,
+    confirmPassword: '',
   });
 
   const navigate = useNavigate();
@@ -19,18 +18,24 @@ const Login = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
+    if (formData.password !== formData.confirmPassword) {
+      alert('Passwords do not match.');
+      return;
+    }
+
     if (formData.employeeId && formData.username && formData.password) {
-      localStorage.setItem('isLoggedIn', 'true');
-      
-      navigate('/dashboard');
+      // TODO: Add your actual registration API logic here
+      alert('Account created successfully! Please log in.');
+      navigate('/login');
     } else {
       alert('Please fill in all required fields.');
     }
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center relative overflow-hidden">
-      <div className="absolute top-0 left-0 w-full h-full">
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center relative overflow-hidden">
+      {/* Background Decorators (Matches the Login Page Design) */}
+      <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
         <div
           className="absolute bottom-0 left-0 w-full h-full bg-gradient-to-br from-rose-100 to-rose-200"
           style={{ clipPath: 'polygon(0 50%, 100% 38%, 100% 100%, 0 100%)' }}
@@ -54,16 +59,16 @@ const Login = () => {
         <h1 className="text-3xl font-bold text-red-600">Point of Sale</h1>
       </div>
 
-      {/* Login Card */}
-      <Card className="w-full max-w-md mx-4 shadow-lg relative z-10 mt-16">
-        <CardHeader className="text-justify">
-          <CardTitle className="text-xl font-semibold">Login</CardTitle>
+      {/* Register Card */}
+      <Card className="w-full max-w-md mx-4 shadow-lg relative z-10 mt-16 bg-white">
+        <CardHeader className="text-left pb-4">
+          <CardTitle className="text-xl font-bold">Register</CardTitle>
           <p className="text-sm text-gray-600 mt-1">
-            Access the POS panel using your employee id, username, and passcode.
+            Create an account using your employee id, username, and a passcode.
           </p>
         </CardHeader>
         <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-5">
             <div className="space-y-4">
               <div className="space-y-2">
                 <Label htmlFor="employeeId">Employee ID *</Label>
@@ -104,39 +109,34 @@ const Login = () => {
                   required
                 />
               </div>
-            </div>
-            <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-2">
-                <Checkbox
-                  id="rememberMe"
-                  checked={formData.rememberMe}
-                  onCheckedChange={(checked) =>
-                    setFormData({ ...formData, rememberMe: checked as boolean })
+              <div className="space-y-2">
+                <Label htmlFor="confirmPassword">Confirm Password *</Label>
+                <Input
+                  id="confirmPassword"
+                  type="password"
+                  placeholder="Re-enter your password"
+                  value={formData.confirmPassword}
+                  onChange={(e) =>
+                    setFormData({ ...formData, confirmPassword: e.target.value })
                   }
+                  required
                 />
-                <Label htmlFor="rememberMe">Remember Me</Label>
               </div>
-              <Link to="/forgot-password" className="text-sm text-red-600 hover:underline">
-                Forgot Password?
+            </div>
+            
+            <div className="pt-2">
+              <Button type="submit" className="w-full bg-[#b91c1c] hover:bg-red-800 text-white font-medium">
+                Create Account
+              </Button>
+            </div>
+
+            {/* Back to Login Link */}
+            <div className="text-center text-sm text-gray-600 mt-6 pt-2">
+              Already have an account?{' '}
+              <Link to="/login" className="text-[#b91c1c] hover:underline font-bold">
+                Sign In
               </Link>
             </div>
-            
-            <Button type="submit" className="w-full bg-red-700 hover:bg-red-800 text-white">
-              Sign In
-            </Button>
-
-            {/* Create Account Link */}
-            <div className="text-center text-sm text-gray-600 mt-4">
-              Don't have an account?{' '}
-              <button 
-                type="button" 
-                onClick={() => navigate('/Register')} 
-                className="text-red-600 hover:underline font-semibold bg-transparent border-none p-0 cursor-pointer"
-              >
-                Create Account
-              </button>
-            </div>
-            
           </form>
         </CardContent>
       </Card>
@@ -144,4 +144,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;

@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import Login from "./pages/Login";
+import Register from "./pages/Register";
 import WebLayout from "@/layouts/WebLayout";
 
 import Dashboard from "@/pages/dashboard/Dashboard";
@@ -17,6 +18,7 @@ function App() {
       <Routes>
 
         <Route path="/" element={<Login />} />
+        <Route path="/register" element={<Register />} />
 
         {/* PROTECTED PAGES */}
         <Route element={<WebLayout />}>
