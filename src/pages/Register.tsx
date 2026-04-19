@@ -24,7 +24,7 @@ const Register = () => {
     }
 
     if (formData.employeeId && formData.username && formData.password) {
-      // TODO: Add your actual registration API logic here
+      // API logic here
       alert('Account created successfully! Please log in.');
       navigate('/login');
     } else {
@@ -34,7 +34,6 @@ const Register = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center relative overflow-hidden">
-      {/* Background Decorators (Matches the Login Page Design) */}
       <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
         <div
           className="absolute bottom-0 left-0 w-full h-full bg-gradient-to-br from-rose-100 to-rose-200"

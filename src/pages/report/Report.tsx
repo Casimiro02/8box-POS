@@ -31,13 +31,13 @@ import {
 // SAMPLE DATA 
 
 const salesData = [
-  { name: 'Mon', total: 1200 },
-  { name: 'Tue', total: 2100 },
-  { name: 'Wed', total: 1800 },
-  { name: 'Thu', total: 2400 },
-  { name: 'Fri', total: 3200 },
-  { name: 'Sat', total: 4500 },
-  { name: 'Sun', total: 3800 },
+  { name: 'Mon', total: 1100 },
+  { name: 'Tue', total: 2000 },
+  { name: 'Wed', total: 1700 },
+  { name: 'Thu', total: 2500 },
+  { name: 'Fri', total: 3400 },
+  { name: 'Sat', total: 4200 },
+  { name: 'Sun', total: 3600 },
 ];
 
 const recentSales = [
