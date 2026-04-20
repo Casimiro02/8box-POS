@@ -3,7 +3,6 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import WebLayout from "@/layouts/WebLayout";
-
 import Dashboard from "@/pages/dashboard/Dashboard";
 import Order from "@/pages/order/Order";
 import History from "@/pages/history/History";
@@ -45,7 +44,6 @@ function App() {
           <Route path="/transfer-request" element={<TransferRequest />} />
         </Route>
 
-        {/* Optional fallback */}
         <Route path="*" element={<Navigate to="/" replace />} />
 
       </Routes>
